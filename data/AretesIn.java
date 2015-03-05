@@ -1,21 +1,17 @@
 package data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class AretesIn {
-	public Aretes[] AretesIn;
-	
-	public void setLength(int length){
-		AretesIn = new Aretes[length];
-	}
+	public List<Aretes> AretesIn = new ArrayList<Aretes>();
+	public int nbAretes;
+	public int sommetDepart;
 	
 	public void addAreteIn(Aretes addAretes){
-		for (int i=0; i<AretesIn.length; i++){
-			if(AretesIn[i]==null){
-				AretesIn[i]=addAretes;
-				break;
-			}
-		}
+		AretesIn.add(addAretes);
 	}
 	
 }
