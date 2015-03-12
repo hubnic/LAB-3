@@ -22,7 +22,7 @@ public class ConcreteParser implements Parser{
 				if(sCurrentLine.toString().equalsIgnoreCase("$"))
 					break;
 				else if(index == 0)
-					aretesIn.nbAretes = Integer.parseInt(sCurrentLine);
+					aretesIn.nbSommets = Integer.parseInt(sCurrentLine);
 				else if(index == 1)
 					aretesIn.sommetDepart = Integer.parseInt(sCurrentLine);
 				else{
@@ -43,11 +43,16 @@ public class ConcreteParser implements Parser{
 					ex.printStackTrace();
 				}
 			}
+		aretesIn.calculerNbAretes();
 		return null;
 	}
 	public void addAretes(int destination, int parent, int poids){
 		//System.out.println(destination + " " + parent + " " + poids);
 		aretesIn.addAreteIn(new Aretes(destination, parent, poids));
+	}
+	
+	public AretesIn getAretesIn(){
+		return aretesIn;
 	}
 
 }

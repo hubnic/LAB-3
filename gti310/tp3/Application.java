@@ -1,6 +1,7 @@
 package gti310.tp3;
 
 import gti310.tp3.parser.ConcreteParser;
+import gti310.tp3.solver.ConcreteSolver;
 
 /**
  * The Application class defines a template method to call the elements to
@@ -22,5 +23,8 @@ public class Application {
 	public static void main(String args[]) {
 		ConcreteParser concreteParser = new ConcreteParser();
 		concreteParser.parse("C:\\Users\\Jean-Theo\\workspace\\LAB-3\\vendeur.txt");
+		
+		ConcreteSolver concreteSolver = new ConcreteSolver();
+		concreteSolver.solve(concreteParser);
 	}
 }
