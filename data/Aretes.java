@@ -6,7 +6,7 @@ public class Aretes {
 	int parent;
 	int poids;
 	
-	public Aretes(int destinationIn, int parentIn, int poidsIn){
+	public Aretes(int parentIn, int destinationIn, int poidsIn){
 		destination = destinationIn;
 		parent = parentIn;
 		poids = poidsIn;

@@ -15,12 +15,13 @@ public class AretesIn {
 		AretesIn.add(addAretes);
 	}
 	
-	public void calculerNbAretes(){
+	public List<Integer> calculerNbAretes(){
 		for(int i = 0; i < AretesIn.size(); i++){
 			if(!tabSommets.contains(AretesIn.get(i).parent)){
 				tabSommets.add(AretesIn.get(i).parent);
 			}
 		}
+		return tabSommets;
 	}
 	
 }
