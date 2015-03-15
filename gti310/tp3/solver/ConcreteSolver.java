@@ -93,6 +93,9 @@ public class ConcreteSolver implements Solver {
 				 }
 				 compteur++;
 			 }
+
+			 if(weight != 0)
+				 System.out.println(directParent + " " + weight);
 			 if(weight < shortestPath[0][1] && weight != 0){
 				//distance
 				 shortestPath[0][1] = directParent;
