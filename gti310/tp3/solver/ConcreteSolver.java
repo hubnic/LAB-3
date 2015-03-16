@@ -55,12 +55,14 @@ public class ConcreteSolver implements Solver {
 				shortestPath = calculateShortestForBiggerRoot(shortestPath,i);
 				//System.out.println(shortestPath[0][0]+" "+shortestPath[0][1]);
 				setGraphElement(listeAretes.get(i).getDestination(), shortestPath[0][0], shortestPath[0][1]);
+				
 			}
 			
 			else{
 				shortestPath = calculateShortestForSmallerRoot(shortestPath,i);
 				//System.out.println(shortestPath[0][0]+" "+shortestPath[0][1]);
 				setGraphElement(listeAretes.get(i).getDestination(), shortestPath[0][0], shortestPath[0][1]);
+				
 			}
 		}
 		displayResults();
@@ -89,13 +91,13 @@ public class ConcreteSolver implements Solver {
 						 directParent = listeAretes.get(compteur).getParent();
 					 root = listeAretes.get(compteur).getParent();
 					 weight +=  listeAretes.get(compteur).getPoids();
+					 System.out.println("Noeud: " + listeAretes.get(compteur).getDestination() +" parent: "+ directParent + " " + weight);
 					 compteur = 0;
 				 }
 				 compteur++;
 			 }
-
 			 if(weight != 0)
-				 System.out.println(directParent + " " + weight);
+				// System.out.println("Noeud: " + listeAretes.get(compteur).getDestination() +" parent: "+ directParent + " " + weight);
 			 if(weight < shortestPath[0][1] && weight != 0){
 				//distance
 				 shortestPath[0][1] = directParent;
@@ -137,7 +139,7 @@ public class ConcreteSolver implements Solver {
 	
 	private void displayResults(){
 		for(int i = 0; i < graphe.length; i++){
-			System.out.println(graphe[i][0] + " " + graphe[i][1]);
+			System.out.println("resultats " + graphe[i][0] + " " + graphe[i][1]);
 		}
 	}
 	

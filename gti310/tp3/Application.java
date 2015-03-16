@@ -2,6 +2,7 @@ package gti310.tp3;
 
 import gti310.tp3.parser.ConcreteParser;
 import gti310.tp3.solver.ConcreteSolver;
+import gti310.tp3.solver.ConcreteSolverNic;
 
 /**
  * The Application class defines a template method to call the elements to
@@ -22,9 +23,10 @@ public class Application {
 	 */
 	public static void main(String args[]) {
 		ConcreteParser concreteParser = new ConcreteParser();
-		concreteParser.parse("C:\\Users\\Jean-Theo\\workspace\\LAB-3\\vendeur.txt");
+		//concreteParser.parse("C:\\Users\\Jean-Theo\\workspace\\LAB-3\\vendeur.txt");
+		concreteParser.parse("C:\\Users\\Nicolas\\Documents\\Universite\\2015\\Hiver\\GTI310\\TP3\\UnrealNetworksSolver\\UnrealNetworksSolver\\gti310\\tp3\\LAB-3\\Vendeur.txt");
 		
-		ConcreteSolver concreteSolver = new ConcreteSolver();
+		ConcreteSolverNic concreteSolver = new ConcreteSolverNic();
 		concreteSolver.solve(concreteParser);
 	}
 }
