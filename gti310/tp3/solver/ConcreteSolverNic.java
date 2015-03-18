@@ -1,3 +1,5 @@
+/*fait par Nicolas Hubert et Jean-Théo Vinet*/
+
 package gti310.tp3.solver;
 
 import gti310.tp3.parser.ConcreteParser;
