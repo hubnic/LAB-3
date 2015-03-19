@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gti310.tp3.parser.ConcreteParser;
+import gti310.tp3.writer.ConcreteWriter;
 import data.Aretes;
 import data.AretesIn;
 
@@ -56,22 +57,24 @@ public class ConcreteSolver implements Solver {
 				//System.out.println(shortestPath[0][0]+" "+shortestPath[0][1]);
 				setGraphElement(listeAretes.get(i).getDestination(), shortestPath[0][0], shortestPath[0][1]);
 			}
-			
-			else{
-				shortestPath = calculateShortestForSmallerRoot(shortestPath,i);
-				//System.out.println(shortestPath[0][0]+" "+shortestPath[0][1]);
-				setGraphElement(listeAretes.get(i).getDestination(), shortestPath[0][0], shortestPath[0][1]);
-			}
 		}
 		displayResults();
 	}
 	
 	private void setGraphElement(int destination, int poids, int parent){
+		//System.out.println("\n"+destination+" "+poids+" " +parent);
 		destination--;
-		if(poids < graphe[destination][0]){
+		if(destination == sommetDepart){
+			graphe[destination][0] = 0;
+			graphe[destination][1] = 0;
+		}
+		else if(poids < graphe[destination][0] && graphe[destination][0] == Integer.MAX_VALUE){
 			graphe[destination][0] = poids;
 			graphe[destination][1] = parent;
 		}
+		//displayResults();
+		ConcreteWriter writer = new ConcreteWriter(graphe);
+		writer.writeTextFile();
 	}
 
 	private int[][] calculateShortestForBiggerRoot(int [][] shortestPath, int i){
@@ -79,24 +82,28 @@ public class ConcreteSolver implements Solver {
 		 //Loop sur la liste de toutes les aretes
 		 //calcule la distance de tous les chemins possible et garde le plus court
 		 for(int j = 0; j < listeAretes.size(); j++){
+			 //System.out.println(i);
 			 int weight = 0;
 			 int directParent = 0;
 			 int compteur = 0;
 			 //retrace le chemin jusquau sommet de départ en gardant en note la distance
 			 while(root != areteIn.sommetDepart){
+				 //System.out.println(root);
 				 if(listeAretes.get(compteur).getDestination() == root){
 					 if(directParent == 0)
 						 directParent = listeAretes.get(compteur).getParent();
 					 root = listeAretes.get(compteur).getParent();
 					 weight +=  listeAretes.get(compteur).getPoids();
 					 compteur = 0;
+
+					 //System.out.println(root + " " + weight + " " );
 				 }
 				 compteur++;
 			 }
 
-			 if(weight != 0)
-				 System.out.println(directParent + " " + weight);
-			 if(weight < shortestPath[0][1] && weight != 0){
+			 //if(weight != 0)
+				 //System.out.println(directParent + " " + weight);
+			 if(weight != 0){
 				//distance
 				 shortestPath[0][1] = directParent;
 				 // parent
@@ -105,36 +112,6 @@ public class ConcreteSolver implements Solver {
 		 }
 		return shortestPath;
 	}
-	
-	private int[][] calculateShortestForSmallerRoot(int [][] shortestPath, int i){
-		int root = listeAretes.get(i).getParent();
-		 //Loop sur la liste de toutes les aretes
-		 //calcule la distance de tous les chemins possible et garde le plus court
-		 for(int j = 0; j < listeAretes.size(); j++){
-			 int weight = 0;
-			 int directParent = 0;
-			 int compteur = 0;
-			 //retrace le chemin jusquau sommet de départ en gardant en note la distance
-			 while(root != areteIn.sommetDepart){
-				 if(listeAretes.get(compteur).getParent() == root){
-					 if(directParent == 0)
-						 directParent = listeAretes.get(compteur).getDestination();
-					 root = listeAretes.get(compteur).getDestination();
-					 weight +=  listeAretes.get(compteur).getPoids();
-					 compteur = 0;
-				 }
-				 compteur++;
-			 }
-			 if(weight < shortestPath[0][1] && weight != 0){
-				//distance
-				 shortestPath[0][1] = directParent;
-				 // parent
-				 shortestPath[0][0] = weight;
-			 }
-		 }
-		return shortestPath;
-	}
-	
 	private void displayResults(){
 		for(int i = 0; i < graphe.length; i++){
 			System.out.println(graphe[i][0] + " " + graphe[i][1]);
