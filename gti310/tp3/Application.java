@@ -23,6 +23,7 @@ public class Application {
 	public static void main(String args[]) {
 		ConcreteParser concreteParser = new ConcreteParser();
 		concreteParser.parse("C:\\Users\\Jean-Theo\\workspace\\LAB-3\\vendeur.txt");
+		//concreteParser.parse("C:\\Users\\Nicolas\\Documents\\Universite\\2015\\Hiver\\GTI310\\TP3\\UnrealNetworksSolver\\UnrealNetworksSolver\\gti310\\tp3\\LAB-3\\Vendeur.txt");
 		
 		ConcreteSolver concreteSolver = new ConcreteSolver();
 		concreteSolver.solve(concreteParser);
